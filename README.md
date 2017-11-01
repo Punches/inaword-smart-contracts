@@ -2,7 +2,7 @@
 
 Код по урокам сайта [inaword.ru](http://inaword.ru/smart-kontrakty/)
 
-У каждого урока своя ветка.
+У каждого урока своя ветка. В каждой ветке пошаговые коммиты.
 
 Компилировать, деплоить и тестировать будем [трюфелем](http://truffleframework.com/) в [тестрпц](https://github.com/ethereumjs/testrpc).
 Когда потребуется основная сеть, будем использовать [кован](https://kovan.etherscan.io/) через [инфуру](https://infura.io/).

@@ -8,4 +8,8 @@ contract HelloWorld {
 		return wellcomeString;
 	}
 
+	function setData(string newData) {
+		wellcomeString = newData;
+	}
+
 }

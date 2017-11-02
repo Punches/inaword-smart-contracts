@@ -1,5 +1,5 @@
-var BusinessCard = artifacts.require("./BusinessCard.sol");
+var SimpleTokenCoin = artifacts.require("./SimpleTokenCoin.sol");
 
 module.exports = function(deployer) {
-	deployer.deploy(BusinessCard);
+	deployer.deploy(SimpleTokenCoin);
 };

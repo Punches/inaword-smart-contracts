@@ -2,34 +2,14 @@ pragma solidity ^0.4.13;
 
 contract BusinessCard {
 
-	string name;
+	mapping (bytes32 => string) data;
 
-	uint age;
-
-	uint year;
-
-	function getName() constant returns (string) {
-		return name;
+	function setData(string key, string value) {
+		data[sha3(key)] = value;
 	}
 
-	function setName(string newName) {
-		name = newName;
-	}
-
-	function getAge() constant returns (uint) {
-		return age;
-	}
-
-	function setAge(uint newAge) {
-		age = newAge;
-	}
-
-	function getYear() constant returns (uint) {
-		return year;
-	}
-
-	function setYear(uint newYear) {
-		year = newYear;
+	function getData(string key) constant returns(string) {
+		return data[sha3(key)];
 	}
 
 }

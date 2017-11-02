@@ -4,7 +4,14 @@ contract BusinessCard {
 
 	mapping (bytes32 => string) data;
 
+	address owner;
+
+	function BusinessCard() {
+		owner = msg.sender;
+	}
+
 	function setData(string key, string value) {
+		require(msg.sender == owner);
 		data[sha3(key)] = value;
 	}
 

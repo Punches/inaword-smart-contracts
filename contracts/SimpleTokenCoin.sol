@@ -1,6 +1,26 @@
 pragma solidity ^0.4.13;
 
-contract SimpleTokenCoin {
+contract Ownable {
+
+	address owner;
+
+	function Ownable() {
+		owner = msg.sender;
+	}
+
+	modifier onlyOwner() {
+		require(msg.sender == owner);
+		_;
+	}
+
+	function transferOwnership(address newOwner) onlyOwner {
+		owner = newOwner;
+	}
+
+}
+
+
+contract SimpleTokenCoin is Ownable {
 
 	string public constant name = "Simple Coint Token";
 
@@ -11,6 +31,8 @@ contract SimpleTokenCoin {
 	uint public totalSupply = 0;
 
 	mapping (address => uint) balances;
+
+	mapping (address => mapping (address => uint)) allowed;
 
 	function balanceOf(address _owner) constant returns (uint balance) {
 		return balances[_owner];
@@ -27,7 +49,12 @@ contract SimpleTokenCoin {
 	}
 
 	function transferFrom(address _from, address _to, uint _value) returns (bool success) {
-		if(balances[_from] >= _value && balances[_to] + _value >= balances[_to]) {
+		if(	
+			allowed[_from][msg.sender] >= _value
+			&& balances[_from] >= _value 
+			&& balances[_to] + _value >= balances[_to]
+		) {
+			allowed[_from][msg.sender] -= _value;
 			balances[_from] -= _value;
 			balances[_to] += _value;
 			Transfer(_from, _to, _value);
@@ -36,18 +63,20 @@ contract SimpleTokenCoin {
 		return false;
 	}
 
-	function mint(address _to, uint _value) {
+	function mint(address _to, uint _value) onlyOwner {
 		assert(totalSupply + _value >= totalSupply && balances[_to] + _value >= balances[_to]);
 		balances[_to] += _value;
 		totalSupply += _value;
 	}
 
 	function approve(address _spender, uint _value) returns (bool success) {
-		return false;
+		allowed[msg.sender][_spender] = _value;
+		Approval(msg.sender, _spender, _value);
+		return true;
 	}
 
 	function allowance(address _owner, address _spender) constant returns (uint remaining) {
-		return 0;
+		return allowed[_owner][_spender];
 	}
 
 	event Transfer(address indexed _from, address indexed _to, uint _value);

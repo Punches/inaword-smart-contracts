@@ -1,17 +1,29 @@
 pragma solidity ^0.4.13;
 
-contract BusinessCard {
-
-	mapping (bytes32 => string) data;
+contract Ownable {
 
 	address owner;
 
-	function BusinessCard() {
+	function Ownable() {
 		owner = msg.sender;
 	}
 
-	function setData(string key, string value) {
+	modifier onlyOwner() {
 		require(msg.sender == owner);
+		_;
+	}
+
+	function transferOwnership(address newOwner) onlyOwner {
+		owner = newOwner;
+	}
+
+}
+
+contract BusinessCard is Ownable {
+
+	mapping (bytes32 => string) data;
+
+	function setData(string key, string value) onlyOwner {
 		data[sha3(key)] = value;
 	}
 

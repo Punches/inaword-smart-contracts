@@ -4,22 +4,13 @@
 
 У каждого урока своя ветка. В каждой ветке пошаговые коммиты.
 
-Компилировать, деплоить и тестировать будем [трюфелем](http://truffleframework.com/) в [тестрпц](https://github.com/ethereumjs/testrpc).
-Когда потребуется основная сеть, будем использовать [кован](https://kovan.etherscan.io/) через [инфуру](https://infura.io/).
+## Урок #2
 
-## Это урок #1
+Сделаем смарт-контракт визитку.
 
-В нем мы подготовим окружение и сделаем традиционный "Hello, world!"
+Узнаем два типа данных **mapping** и **uint**
 
 
-### Подготовка окружения
 
-Нам потребуются:
-
-* [Node.js](https://nodejs.org/en/)
-* [npm](https://www.npmjs.com/get-npm)
-* [truffle](http://truffleframework.com/)
-* [geth](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
-* [testrpc](https://github.com/ethereumjs/testrpc)
 
 

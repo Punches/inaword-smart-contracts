@@ -6,6 +6,8 @@ contract BusinessCard {
 
 	uint age;
 
+	uint year;
+
 	function getName() constant returns (string) {
 		return name;
 	}
@@ -20,6 +22,14 @@ contract BusinessCard {
 
 	function setAge(uint newAge) {
 		age = newAge;
+	}
+
+	function getYear() constant returns (uint) {
+		return year;
+	}
+
+	function setYear(uint newYear) {
+		year = newYear;
 	}
 
 }
